@@ -28,10 +28,6 @@
       "Enabled": true,
       "EnablePermissions": true
     },
-    "WebsiteFilter": {
-      "Block": ["https://localhost/*"],
-      "Exceptions": ["https://localhost/*"]
-    },
     "Extensions": {
       "Uninstall": [
         "google@search.mozilla.org",
