@@ -51,7 +51,7 @@
       }
     },
     "SearchEngines": {
-      "PreventInstalls": true,
+      "PreventInstalls": false,
       "Remove": [
         "Google",
         "DuckDuckGo",
