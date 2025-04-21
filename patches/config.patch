@@ -21,7 +21,6 @@ index e69de29bb2..208184547e 100644
 @@ -0,0 +1,14 @@
 +FINAL_TARGET_FILES += [
 +  "omegafox.cfg",
-+  "chrome.css",
 +  "properties.json"
 +]
 +

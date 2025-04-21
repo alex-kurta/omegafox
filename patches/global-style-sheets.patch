@@ -33,14 +33,3 @@ index 13d65c2d3e..c51f1da030 100644
      return;
    }
  
-@@ -470,8 +475,8 @@ void GlobalStyleSheetCache::InitFromProfile() {
-     return;
-   }
- 
--  contentFile->Append(u"userContent.css"_ns);
--  chromeFile->Append(u"userChrome.css"_ns);
-+  contentFile->Append(u"content.css"_ns);
-+  chromeFile->Append(u"chrome.css"_ns);
- 
-   mUserContentSheet = LoadSheetFile(contentFile, eUserSheetFeatures);
-   mUserChromeSheet = LoadSheetFile(chromeFile, eUserSheetFeatures);

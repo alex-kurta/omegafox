@@ -149,7 +149,6 @@ build-launcher: check-arch
 package-linux:
 	python3 scripts/package.py linux \
 		--includes \
-			settings/chrome.css \
 			settings/camoucfg.jvv \
 			settings/properties.json \
 			bundle/fontconfigs \
@@ -161,7 +160,6 @@ package-linux:
 package-macos:
 	python3 scripts/package.py macos \
 		--includes \
-			settings/chrome.css \
 			settings/camoucfg.jvv \
 			settings/properties.json \
 		--version $(version) \
@@ -172,7 +170,6 @@ package-macos:
 package-windows:
 	python3 scripts/package.py windows \
 		--includes \
-			settings/chrome.css \
 			settings/camoucfg.jvv \
 			settings/properties.json \
 			~/.mozbuild/vs/VC/Redist/MSVC/14.38.33135/$(vcredist_arch)/Microsoft.VC143.CRT/*.dll \
