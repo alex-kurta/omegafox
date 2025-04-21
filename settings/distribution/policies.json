@@ -54,14 +54,13 @@
       "PreventInstalls": false,
       "Remove": [
         "Google",
-        "DuckDuckGo",
         "Bing",
         "Amazon.com",
         "eBay",
         "Twitter",
         "Wikipedia (en)"
       ],
-      "Default": "None",
+      "Default": "DuckDuckGo",
       "Add": [
         {
           "Name": "None",
