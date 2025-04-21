@@ -5,9 +5,9 @@
 # there is a possible patch to consider when changing this:
 # see: patches/browser-confvars.patch
 
-MOZ_APP_NAME=camoufox
-MOZ_APP_BASENAME=Camoufox
-MOZ_APP_PROFILE=camoufox
-MOZ_APP_VENDOR=Camoufox
-MOZ_APP_DISPLAYNAME=Camoufox
-MOZ_APP_REMOTINGNAME=camoufox
+MOZ_APP_NAME=omegafox
+MOZ_APP_BASENAME=Omegafox
+MOZ_APP_PROFILE=omegafox
+MOZ_APP_VENDOR=Omegafox
+MOZ_APP_DISPLAYNAME=Omegafox
+MOZ_APP_REMOTINGNAME=omegafox
