@@ -17,7 +17,6 @@
     "DisableFirefoxScreenshots": true,
     "DisableSafeMode": true,
     "DisplayBookmarksToolbar": "never",
-    "DontCheckDefaultBrowser": true,
     "DisableFirefoxAccounts": true,
     "DisableFormHistory": true,
     "HardwareAcceleration": false,
