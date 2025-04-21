@@ -7,7 +7,6 @@ index 52f0af76ec..2a7a9ae4fc 100644
  
  #include "ChromeUtils.h"
 +#include "MaskConfig.hpp"
-+#include "MouseTrajectories.hpp"
  
  #include "JSOracleParent.h"
  #include "ThirdPartyUtil.h"
