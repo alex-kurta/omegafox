@@ -60,17 +60,7 @@
         "Twitter",
         "Wikipedia (en)"
       ],
-      "Default": "DuckDuckGo",
-      "Add": [
-        {
-          "Name": "None",
-          "Description": "None",
-          "Alias": "",
-          "Method": "POST",
-          "URLTemplate": "http://127.0.0.1",
-          "PostData": ""
-        }
-      ]
+      "Default": "DuckDuckGo"
     }
   }
 }
