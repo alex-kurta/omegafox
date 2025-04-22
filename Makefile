@@ -124,7 +124,6 @@ build-launcher: check-arch
 package-linux:
 	python3 scripts/package.py linux \
 		--includes \
-			settings/omegacfg.jvv \
 			settings/properties.json \
 			bundle/fontconfigs \
 		--version $(version) \
