@@ -31,19 +31,19 @@ git clone --depth 1 https://forge.fsky.io/oneflux/omegafox
 cd omegafox
 ```
 
-Next, build the Omegafox source code with the following command:
+Next, build the Ωfox source code with the following command:
 
 ```bash
 make dir
 ```
 
-After that, you have to bootstrap your system to be able to build Omegafox. You only have to do this one time. It is done by running the following command:
+After that, you have to bootstrap your system to be able to build Ωfox. You only have to do this one time. It is done by running the following command:
 
 ```bash
 make bootstrap
 ```
 
-Finally you can build and package Omegafox the following command:
+Finally you can build and package Ωfox using the following command:
 
 ```bash
 python3 multibuild.py --target linux --arch x86_64 arm64 i686
