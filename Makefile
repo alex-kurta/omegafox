@@ -118,9 +118,6 @@ check-arch:
 		exit 1; \
 	fi
 
-build-launcher: check-arch
-	cd legacy/launcher && bash build.sh $(arch) $(os)
-
 package-linux:
 	python3 scripts/package.py linux \
 		--includes \
