@@ -30,24 +30,15 @@ def add_includes_to_package(package_file, includes, fonts, new_file, target):
                 target=target,
             )
 
-        if target == 'macos':
-            # Move Omegafox/Omegafox.app -> Omegafox.app
-            nightly_dir = os.path.join(temp_dir, 'Omegafox')
-            shutil.move(
-                os.path.join(nightly_dir, 'Omegafox.app'), os.path.join(temp_dir, 'Omegafox.app')
-            )
-            # Remove old app dir and all content in it
-            shutil.rmtree(nightly_dir)
-        else:
-            # Move contents out of omegafox folder if it exists
-            old_omegafox_dir = os.path.join(temp_dir, 'omegafox')
-            omegafox_dir = os.path.join(temp_dir, 'omegafox-folder')
-            if os.path.exists(old_omegafox_dir):
-                # Rename omegafox_dir
-                os.rename(old_omegafox_dir, omegafox_dir)
-                for item in os.listdir(omegafox_dir):
-                    shutil.move(os.path.join(omegafox_dir, item), temp_dir)
-                os.rmdir(omegafox_dir)
+        # Move contents out of omegafox folder if it exists
+        old_omegafox_dir = os.path.join(temp_dir, 'omegafox')
+        omegafox_dir = os.path.join(temp_dir, 'omegafox-folder')
+        if os.path.exists(old_omegafox_dir):
+            # Rename omegafox_dir
+            os.rename(old_omegafox_dir, omegafox_dir)
+            for item in os.listdir(omegafox_dir):
+                shutil.move(os.path.join(omegafox_dir, item), temp_dir)
+            os.rmdir(omegafox_dir)
 
         # Create target_dir
         if target == 'macos':
@@ -76,13 +67,6 @@ def add_includes_to_package(package_file, includes, fonts, new_file, target):
                     os.path.join(fonts_dir, font),
                     dirs_exist_ok=True,
                 )
-        # Non-linux systems cannot read fonts within subfolders.
-        # Instead, we walk the fonts/ directory and copy all files.
-        else:
-            os.makedirs(fonts_dir, exist_ok=True)
-            for font in fonts or []:
-                for file in list_files(root_dir=os.path.join('bundle', 'fonts', font), suffix='*'):
-                    shutil.copy2(file, os.path.join(fonts_dir, os.path.basename(file)))
 
         # Remove unneeded paths
         for path in UNNEEDED_PATHS:
@@ -100,7 +84,7 @@ def get_args():
     parser = argparse.ArgumentParser(
         description='Package Omegafox for different operating systems.'
     )
-    parser.add_argument('os', choices=['linux', 'macos', 'windows'], help='Target operating system')
+    parser.add_argument('os', choices=['linux'], help='Target operating system')
     parser.add_argument(
         '--includes', nargs='+', help='List of files or directories to include in the package'
     )
