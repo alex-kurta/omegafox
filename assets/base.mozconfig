@@ -64,6 +64,8 @@ ac_add_options --enable-randomize
 ac_add_options --enable-stack-protector
 ac_add_options --enable-fortify-source=2
 ac_add_options --with-clang-extra-optimization-flags="-fstack-protector-strong -fno-omit-frame-pointer -fvisibility=hidden -march=native"
+CFLAGS="$CFLAGS -fwrapv"
+CXXFLAGS="$CXXFLAGS -fwrapv"
 
 # BUILDING
 # mk_add_options AUTOCLOBBER=1
