@@ -7,6 +7,7 @@ ac_add_options --enable-release
 ac_add_options --disable-crashreporter
 ac_add_options --disable-backgroundtasks
 ac_add_options --disable-default-browser-agent
+ac_add_options --disable-parental-controls
 ac_add_options --disable-tests
 ac_add_options --disable-updater
 ac_add_options --disable-artifact-builds
@@ -38,6 +39,11 @@ ac_add_options --enable-lto
 # ac_add_options --disable-debug-js-modules
 # ac_add_options --enable-strip
 # ac_add_options --enable-install-strip
+# ac_add_options --disable-profiling
+mk_add_options MOZ_OPTIMIZE=1
+MOZ_OPTIMIZE=1
+export MOZ_OPTIMIZE=1
+# export STRIP_FLAGS="--strip-debug --strip-unneeded"
 
 # SECURITY
 ac_add_options --enable-hardening
