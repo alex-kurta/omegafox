@@ -21,6 +21,7 @@
   - Hardened compilation configuration
   - Bundled with [hardened_malloc](https://github.com/GrapheneOS/hardened_malloc)
   - Uses Mullvad's adblock DNS-over-HTTPS to provide Encrypted Client Hello
+  - JIT disabled by default
   - More to come
 
 ## Building
