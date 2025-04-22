@@ -66,6 +66,8 @@ ac_add_options --enable-fortify-source=2
 ac_add_options --with-clang-extra-optimization-flags="-fstack-protector-strong -fno-omit-frame-pointer -fvisibility=hidden -march=native"
 CFLAGS="$CFLAGS -fwrapv"
 CXXFLAGS="$CXXFLAGS -fwrapv"
+CFLAGS="$CFLAGS -ftrivial-auto-var-init=zero"
+CXXFLAGS="$CXXFLAGS -ftrivial-auto-var-init=zero"
 
 # BUILDING
 # mk_add_options AUTOCLOBBER=1
