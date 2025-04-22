@@ -20,6 +20,7 @@
   - Weak ciphers and outdated TLS versions disabled by default
   - Hardened compilation configuration
   - Bundled with [hardened_malloc](https://github.com/GrapheneOS/hardened_malloc)
+  - Uses Mullvad's adblock DNS-over-HTTPS to provide Encrypted Client Hello
   - More to come
 
 ## Building
