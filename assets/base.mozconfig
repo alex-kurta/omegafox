@@ -38,3 +38,5 @@ ac_add_options --disable-jemalloc
 ac_add_options --enable-cfi
 ac_add_options --enable-safestack
 ac_add_options --enable-pie
+
+ac_add_options --disable-artifact-builds
