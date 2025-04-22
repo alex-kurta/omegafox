@@ -3,17 +3,15 @@ Easy build CLI for Omegafox
 
 options:
   -h, --help            show this help message and exit
-  --target {linux,windows,macos} [{linux,windows,macos} ...]
-                        Target platforms to build
+  --target linux        Target platform to build (Linux only)
   --arch {x86_64,arm64,i686} [{x86_64,arm64,i686} ...]
                         Target architectures to build for each platform
   --bootstrap           Bootstrap the build system
   --clean               Clean the build directory before starting
 
 Example:
-$ python3 multibuild.py --target linux windows macos --arch x86_64 arm64
+$ python3 multibuild.py --target linux --arch x86_64 arm64
 
-Since Omegafox is NOT meant to be used as a daily driver, no installers are provided.
 """
 
 import argparse
@@ -25,7 +23,7 @@ from typing import List
 import shutil
 
 # Constants
-AVAILABLE_TARGETS = ["linux", "windows", "macos"]
+AVAILABLE_TARGETS = ["linux"]
 AVAILABLE_ARCHS = ["x86_64", "arm64", "i686"]
 
 
