@@ -16,21 +16,19 @@ pacman := python python-pip p7zip go msitools wget aria2
 help:
 	@echo "Available targets:"
 	@echo "  fetch           - Fetch the Firefox source code"
-	@echo "  setup           - Setup Camoufox & local git repo for development"
+	@echo "  setup           - Setup Omegafox & local git repo for development"
 	@echo "  bootstrap       - Set up build environment"
 	@echo "  mozbootstrap    - Sets up mach"
-	@echo "  dir             - Prepare Camoufox source directory with BUILD_TARGET"
+	@echo "  dir             - Prepare Omegafox source directory with BUILD_TARGET"
 	@echo "  revert          - Kill all working changes"
-	@echo "  edits           - Camoufox developer UI"
+	@echo "  edits           - Omegafox developer UI"
 	@echo "  build-launcher  - Build launcher"
 	@echo "  clean           - Remove build artifacts"
 	@echo "  distclean       - Remove everything including downloads"
-	@echo "  build           - Build Camoufox"
+	@echo "  build           - Build Omegafox"
 	@echo "  set-target      - Change the build target with BUILD_TARGET"
-	@echo "  package-linux   - Package Camoufox for Linux"
-	@echo "  package-macos   - Package Camoufox for macOS"
-	@echo "  package-windows - Package Camoufox for Windows"
-	@echo "  run             - Run Camoufox"
+	@echo "  package-linux   - Package Omegafox for Linux"
+	@echo "  run             - Run Omegafox"
 	@echo "  edit-cfg        - Edit omegafox.cfg"
 	@echo "  ff-dbg          - Setup vanilla Firefox with minimal patches"
 	@echo "  patch           - Apply a patch"
@@ -41,25 +39,6 @@ _ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(_ARGS):;@:)
 
 fetch:
-	# Fetching private patches...
-	@if [ -d "patches/private" ]; then \
-		echo "Found patches/private. Skipping private patches fetch..."; \
-	else \
-		if [ -z "$$CAMOUFOX_PASSWD" ]; then \
-			echo "CAMOUFOX_PASSWD environment variable not set. Skipping private patches..."; \
-		else \
-			echo "Fetching private patches..."; \
-			mkdir -p patches/closedsrc; \
-			if ! aria2c --dry-run "https://camoufox.com/pipeline/rev-$(closedsrc_rev).7z" 2>/dev/null; then \
-				echo "No private patches found for this version"; \
-				exit 1; \
-			else \
-				aria2c -o rev-$(closedsrc_rev).7z "https://camoufox.com/pipeline/rev-$(closedsrc_rev).7z" && \
-				7z x -p"$$CAMOUFOX_PASSWD" rev-$(closedsrc_rev).7z -o./patches/closedsrc && \
-				rm rev-$(closedsrc_rev).7z; \
-			fi; \
-		fi; \
-	fi
 	# Fetching the Firefox source tarball...
 	aria2c -x16 -s16 -k1M -o $(ff_source_tarball) "https://archive.mozilla.org/pub/firefox/releases/$(version)/source/firefox-$(version).source.tar.xz"; \
 
