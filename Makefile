@@ -1,7 +1,7 @@
 include upstream.sh
 export
 
-cf_source_dir := omegafox-$(version)-$(release)
+of_source_dir := omegafox-$(version)-$(release)
 ff_source_tarball := firefox-$(version).source.tar.xz
 
 debs := python3 python3-dev python3-pip p7zip-full golang-go msitools wget aria2
@@ -46,16 +46,16 @@ setup-minimal:
 	if [ ! -f $(ff_source_tarball) ]; then \
 		make fetch; \
 	fi
-	# Create new cf_source_dir
-	rm -rf $(cf_source_dir)
-	mkdir -p $(cf_source_dir)
-	tar -xJf $(ff_source_tarball) -C $(cf_source_dir) --strip-components=1
+	# Create new of_source_dir
+	rm -rf $(of_source_dir)
+	mkdir -p $(of_source_dir)
+	tar -xJf $(ff_source_tarball) -C $(of_source_dir) --strip-components=1
 	# Copy settings & additions
-	cd $(cf_source_dir) && bash ../scripts/copy-additions.sh $(version) $(release)
+	cd $(of_source_dir) && bash ../scripts/copy-additions.sh $(version) $(release)
 
 setup: setup-minimal
 	# Initialize local git repo for development
-	cd $(cf_source_dir) && \
+	cd $(of_source_dir) && \
 		git init -b main && \
 		git add -f -A && \
 		git commit -m "Initial commit" && \
@@ -65,49 +65,49 @@ ff-dbg: setup
 	# Only apply patches to help debug vanilla Firefox
 	make patch ./patches/chromeutil.patch
 	make patch ./patches/browser-init.patch
-	echo "LOCAL_INCLUDES += ['/omegacfg']" >> $(cf_source_dir)/dom/base/moz.build
-	touch $(cf_source_dir)/_READY
+	echo "LOCAL_INCLUDES += ['/omegacfg']" >> $(of_source_dir)/dom/base/moz.build
+	touch $(of_source_dir)/_READY
 	make checkpoint
 	make build
 
 revert:
-	cd $(cf_source_dir) && git reset --hard unpatched
+	cd $(of_source_dir) && git reset --hard unpatched
 
 dir:
-	@if [ ! -d $(cf_source_dir) ]; then \
+	@if [ ! -d $(of_source_dir) ]; then \
 		make setup; \
 	fi
 	python3 scripts/patch.py $(version) $(release)
-	touch $(cf_source_dir)/_READY
+	touch $(of_source_dir)/_READY
 
 set-target:
 	python3 scripts/patch.py $(version) $(release) --mozconfig-only
 
 mozbootstrap:
-	cd $(cf_source_dir) && MOZBUILD_STATE_PATH=$$HOME/.mozbuild ./mach --no-interactive bootstrap --application-choice=browser
+	cd $(of_source_dir) && MOZBUILD_STATE_PATH=$$HOME/.mozbuild ./mach --no-interactive bootstrap --application-choice=browser
 
 bootstrap: dir
 	(sudo apt-get -y install $(debs) || sudo dnf -y install $(rpms) || sudo pacman -Sy $(pacman))
 	make mozbootstrap
 
 diff:
-	@cd $(cf_source_dir) && git diff $(_ARGS)
+	@cd $(of_source_dir) && git diff $(_ARGS)
 
 checkpoint:
-	cd $(cf_source_dir) && git commit -m "Checkpoint" -a -uno
+	cd $(of_source_dir) && git commit -m "Checkpoint" -a -uno
 
 clean:
-	cd $(cf_source_dir) && git clean -fdx && ./mach clobber
+	cd $(of_source_dir) && git clean -fdx && ./mach clobber
 	make revert
 
 distclean:
-	rm -rf $(cf_source_dir) $(ff_source_tarball)
+	rm -rf $(of_source_dir) $(ff_source_tarball)
 
 build: unbusy
-	@if [ ! -f $(cf_source_dir)/_READY ]; then \
+	@if [ ! -f $(of_source_dir)/_READY ]; then \
 		make dir; \
 	fi
-	cd $(cf_source_dir) && ./mach build $(_ARGS)
+	cd $(of_source_dir) && ./mach build $(_ARGS)
 
 edits:
 	python3 ./scripts/developer.py $(version) $(release)
@@ -133,17 +133,17 @@ package-linux:
 		--fonts linux
 
 run:
-	cd $(cf_source_dir) \
+	cd $(of_source_dir) \
 	&& rm -rf ~/.omegafox obj-x86_64-pc-linux-gnu/tmp/profile-default \
 	&& CAMOU_CONFIG=$${CAMOU_CONFIG:-'{}'} \
 	&& CAMOU_CONFIG="$${CAMOU_CONFIG%?}, \"debug\": true}" ./mach run $(args)
 
 edit-cfg:
-	@if [ ! -f $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox.cfg ]; then \
+	@if [ ! -f $(of_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox.cfg ]; then \
 		echo "Error: omegafox.cfg not found. Apply config.patch first."; \
 		exit 1; \
 	fi
-	$(EDITOR) $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox.cfg
+	$(EDITOR) $(of_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox.cfg
 
 check-arg:
 	@if [ -z "$(_ARGS)" ]; then \
@@ -156,15 +156,15 @@ grep:
 
 patch:
 	@make check-arg $(_ARGS);
-	cd $(cf_source_dir) && patch -p1 -i ../$(_ARGS)
+	cd $(of_source_dir) && patch -p1 -i ../$(_ARGS)
 
 unpatch:
 	@make check-arg $(_ARGS);
-	cd $(cf_source_dir) && patch -p1 -R -i ../$(_ARGS)
+	cd $(of_source_dir) && patch -p1 -R -i ../$(_ARGS)
 
 workspace:
 	@make check-arg $(_ARGS);
-	@if (cd $(cf_source_dir) && patch -p1 -R --dry-run --force -i ../$(_ARGS)) > /dev/null 2>&1; then \
+	@if (cd $(of_source_dir) && patch -p1 -R --dry-run --force -i ../$(_ARGS)) > /dev/null 2>&1; then \
 		echo "Patch is already applied. Unapplying..."; \
 		make unpatch $(_ARGS); \
 	else \
@@ -174,11 +174,11 @@ workspace:
 	make patch $(_ARGS)
 
 unbusy:
-	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin \
-		$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox \
-		$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch
+	rm -rf $(of_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin \
+		$(of_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox \
+		$(of_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch
 
 path:
-	@realpath $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin
+	@realpath $(of_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin
 
 vcredist_arch := $(shell echo $(arch) | sed 's/x86_64/x64/' | sed 's/i686/x86/')
