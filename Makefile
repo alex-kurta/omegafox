@@ -132,28 +132,7 @@ package-linux:
 		--version $(version) \
 		--release $(release) \
 		--arch $(arch) \
-		--fonts windows macos linux
-
-package-macos:
-	python3 scripts/package.py macos \
-		--includes \
-			settings/omegacfg.jvv \
-			settings/properties.json \
-		--version $(version) \
-		--release $(release) \
-		--arch $(arch) \
-		--fonts windows linux
-
-package-windows:
-	python3 scripts/package.py windows \
-		--includes \
-			settings/omegacfg.jvv \
-			settings/properties.json \
-			~/.mozbuild/vs/VC/Redist/MSVC/14.38.33135/$(vcredist_arch)/Microsoft.VC143.CRT/*.dll \
-		--version $(version) \
-		--release $(release) \
-		--arch $(arch) \
-		--fonts macos linux
+		--fonts linux
 
 run-launcher:
 	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch;
