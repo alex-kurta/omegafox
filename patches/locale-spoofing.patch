@@ -76,7 +76,7 @@ index 9a043518cf..a8d3733212 100644
 +}
 +
 +const char* Locale::GetDefaultLocale() {
-+  // In Camoufox, GetDefaultLocale is defined outside the header
++  // In Omegafox, GetDefaultLocale is defined outside the header
 +  // to access MaskConfig.
 +  if (auto value = GetCamouLocale())
 +    return value;

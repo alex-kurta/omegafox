@@ -12,7 +12,7 @@ EXPORTS += [
 ]
 
 LOCAL_INCLUDES += [
-    "/camoucfg",
+    "/omegacfg",
 ]
 
 FINAL_LIBRARY = "xul"

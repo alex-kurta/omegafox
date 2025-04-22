@@ -8,7 +8,7 @@ index b0af60b999..28c221136e 100644
  Library("intlcomponents")
 +
 +# DOM Mask
-+LOCAL_INCLUDES += ["/camoucfg"]
++LOCAL_INCLUDES += ["/omegacfg"]
 \ No newline at end of file
 diff --git a/intl/components/src/TimeZone.cpp b/intl/components/src/TimeZone.cpp
 index 5b09dfdcc5..98a78b33cc 100644

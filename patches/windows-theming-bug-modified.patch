@@ -25,12 +25,12 @@ index 54d6b43fe126..116410bb89d9 100644
  endif
 
  PROGRAMS_DEST = $(DIST)/bin
-diff --git a/browser/app/firefox.exe.manifest b/browser/app/camoufox.manifest
+diff --git a/browser/app/firefox.exe.manifest b/browser/app/omegafox.manifest
 similarity index 96%
 rename from browser/app/firefox.exe.manifest
-rename to browser/app/camoufox.exe.manifest
+rename to browser/app/omegafox.exe.manifest
 --- a/browser/app/firefox.exe.manifest
-+++ b/browser/app/camoufox.exe.manifest
++++ b/browser/app/omegafox.exe.manifest
 @@ -3,10 +3,10 @@
  <assemblyIdentity
          version="1.0.0.0"

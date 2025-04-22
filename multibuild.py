@@ -1,5 +1,5 @@
 """
-Easy build CLI for Camoufox
+Easy build CLI for Omegafox
 
 options:
   -h, --help            show this help message and exit
@@ -13,7 +13,7 @@ options:
 Example:
 $ python3 multibuild.py --target linux windows macos --arch x86_64 arm64
 
-Since Camoufox is NOT meant to be used as a daily driver, no installers are provided.
+Since Omegafox is NOT meant to be used as a daily driver, no installers are provided.
 """
 
 import argparse
@@ -49,12 +49,12 @@ class BSYS:
         run('make bootstrap')
 
     def build(self):
-        """Build the Camoufox source code"""
+        """Build the Omegafox source code"""
         os.environ['BUILD_TARGET'] = f'{self.target},{self.arch}'
         run('make build')
 
     def package(self):
-        """Package the Camoufox source code"""
+        """Package the Omegafox source code"""
         run(f'make package-{self.target} arch={self.arch}')
 
     def update_target(self):
@@ -65,12 +65,12 @@ class BSYS:
     @property
     def assets(self) -> List[str]:
         """Get the list of assets"""
-        package_pattern = f'camoufox-*-{self.target[:3]}.{self.arch}.zip'
+        package_pattern = f'omegafox-*-{self.target[:3]}.{self.arch}.zip'
         return glob.glob(package_pattern)
 
     @staticmethod
     def clean():
-        """Clean the Camoufox directory"""
+        """Clean the Omegafox directory"""
         run('make clean')
 
 
@@ -91,7 +91,7 @@ def run_build(target, arch):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Easy build CLI for Camoufox")
+    parser = argparse.ArgumentParser(description="Easy build CLI for Omegafox")
     parser.add_argument(
         "--target",
         choices=AVAILABLE_TARGETS,

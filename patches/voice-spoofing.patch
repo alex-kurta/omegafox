@@ -8,7 +8,7 @@ index 2cf19982b2..dcdcdb5cbf 100644
  ]
 +
 +# DOM Mask
-+LOCAL_INCLUDES += ['/camoucfg']
++LOCAL_INCLUDES += ['/omegacfg']
 \ No newline at end of file
 diff --git a/dom/media/webspeech/synth/nsSynthVoiceRegistry.cpp b/dom/media/webspeech/synth/nsSynthVoiceRegistry.cpp
 index e5a1353d6b..4a4a5b080b 100644

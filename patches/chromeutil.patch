@@ -162,7 +162,7 @@ index 6a99703db1..82415eba19 100644
    boolean isDarkBackground(Element element);
  
 +  /**
-+   * Camoufox debug commands
++   * Omegafox debug commands
 +   */
 +  undefined camouDebug(DOMString varName);
 +
@@ -176,27 +176,27 @@ index 6a99703db1..82415eba19 100644
    readonly attribute unsigned long aliveUtilityProcesses;
  
 +  /**
-+   * Get an int value from Camoufox MaskConfig.
++   * Get an int value from Omegafox MaskConfig.
 +   */
 +  long camouGetInt(DOMString varName);
 +
 +  /**
-+   * Get a double value from Camoufox MaskConfig.
++   * Get a double value from Omegafox MaskConfig.
 +   */
 +  double camouGetDouble(DOMString varName, double defaultValue);
 +
 +  /**
-+   * Get a bool value from Camoufox MaskConfig.
++   * Get a bool value from Omegafox MaskConfig.
 +   */
 +  boolean camouGetBool(DOMString varName, boolean defaultValue);
 +
 +  /**
-+   * Get a string value from Camoufox MaskConfig.
++   * Get a string value from Omegafox MaskConfig.
 +   */
 +  DOMString camouGetString(DOMString varName);
 +
 +  /**
-+   * Get a list of strings from Camoufox MaskConfig.
++   * Get a list of strings from Omegafox MaskConfig.
 +   */
 +  sequence<DOMString> camouGetStringList(DOMString varName);
 +

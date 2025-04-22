@@ -1,7 +1,7 @@
 include upstream.sh
 export
 
-cf_source_dir := camoufox-$(version)-$(release)
+cf_source_dir := omegafox-$(version)-$(release)
 ff_source_tarball := firefox-$(version).source.tar.xz
 
 debs := python3 python3-dev python3-pip p7zip-full golang-go msitools wget aria2
@@ -31,7 +31,7 @@ help:
 	@echo "  package-macos   - Package Camoufox for macOS"
 	@echo "  package-windows - Package Camoufox for Windows"
 	@echo "  run             - Run Camoufox"
-	@echo "  edit-cfg        - Edit camoufox.cfg"
+	@echo "  edit-cfg        - Edit omegafox.cfg"
 	@echo "  ff-dbg          - Setup vanilla Firefox with minimal patches"
 	@echo "  patch           - Apply a patch"
 	@echo "  unpatch         - Remove a patch"
@@ -88,7 +88,7 @@ ff-dbg: setup
 	# Only apply patches to help debug vanilla Firefox
 	make patch ./patches/chromeutil.patch
 	make patch ./patches/browser-init.patch
-	echo "LOCAL_INCLUDES += ['/camoucfg']" >> $(cf_source_dir)/dom/base/moz.build
+	echo "LOCAL_INCLUDES += ['/omegacfg']" >> $(cf_source_dir)/dom/base/moz.build
 	touch $(cf_source_dir)/_READY
 	make checkpoint
 	make build
@@ -147,7 +147,7 @@ build-launcher: check-arch
 package-linux:
 	python3 scripts/package.py linux \
 		--includes \
-			settings/camoucfg.jvv \
+			settings/omegacfg.jvv \
 			settings/properties.json \
 			bundle/fontconfigs \
 		--version $(version) \
@@ -158,7 +158,7 @@ package-linux:
 package-macos:
 	python3 scripts/package.py macos \
 		--includes \
-			settings/camoucfg.jvv \
+			settings/omegacfg.jvv \
 			settings/properties.json \
 		--version $(version) \
 		--release $(release) \
@@ -168,7 +168,7 @@ package-macos:
 package-windows:
 	python3 scripts/package.py windows \
 		--includes \
-			settings/camoucfg.jvv \
+			settings/omegacfg.jvv \
 			settings/properties.json \
 			~/.mozbuild/vs/VC/Redist/MSVC/14.38.33135/$(vcredist_arch)/Microsoft.VC143.CRT/*.dll \
 		--version $(version) \
@@ -191,16 +191,16 @@ run-pw:
 
 run:
 	cd $(cf_source_dir) \
-	&& rm -rf ~/.camoufox obj-x86_64-pc-linux-gnu/tmp/profile-default \
+	&& rm -rf ~/.omegafox obj-x86_64-pc-linux-gnu/tmp/profile-default \
 	&& CAMOU_CONFIG=$${CAMOU_CONFIG:-'{}'} \
 	&& CAMOU_CONFIG="$${CAMOU_CONFIG%?}, \"debug\": true}" ./mach run $(args)
 
 edit-cfg:
-	@if [ ! -f $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox.cfg ]; then \
-		echo "Error: camoufox.cfg not found. Apply config.patch first."; \
+	@if [ ! -f $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox.cfg ]; then \
+		echo "Error: omegafox.cfg not found. Apply config.patch first."; \
 		exit 1; \
 	fi
-	$(EDITOR) $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox.cfg
+	$(EDITOR) $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox.cfg
 
 check-arg:
 	@if [ -z "$(_ARGS)" ]; then \
@@ -231,12 +231,12 @@ workspace:
 	make patch $(_ARGS)
 
 unbusy:
-	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox-bin \
-		$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox \
+	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin \
+		$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox \
 		$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch
 
 path:
-	@realpath $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox-bin
+	@realpath $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin
 
 upload:
 	# ===============================
@@ -244,8 +244,8 @@ upload:
 	# ===============================
 
 	@test -f .passwd || { echo "Error: .passwd file not found"; exit 1; }
-	@mkdir -p ../camoufox-web/internal
-	@rm -rf ../camoufox-web/pipeline/rev-$(closedsrc_rev).7z
-	7z a "-p$$(cat ./.passwd)" -mhe=on ../camoufox-web/pipeline/rev-$(closedsrc_rev).7z "./patches/private/*.patch"
+	@mkdir -p ../omegafox-web/internal
+	@rm -rf ../omegafox-web/pipeline/rev-$(closedsrc_rev).7z
+	7z a "-p$$(cat ./.passwd)" -mhe=on ../omegafox-web/pipeline/rev-$(closedsrc_rev).7z "./patches/private/*.patch"
 
 vcredist_arch := $(shell echo $(arch) | sed 's/x86_64/x64/' | sed 's/i686/x86/')

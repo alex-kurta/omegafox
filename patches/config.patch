@@ -6,7 +6,7 @@ index bb0f71dd60..3ad3d84b82 100644
  #endif
  #endif
  
-+; Camoufox specific files
++; Omegafox specific files
 +@RESPATH@/defaults/pref/local-settings.js
 +@RESPATH@/distribution/policies.json
 +@RESPATH@/omegafox.cfg

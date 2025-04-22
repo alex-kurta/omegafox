@@ -390,5 +390,5 @@ index 3a533d36d1..41d74d9b3f 100644
  include("/tools/fuzzing/libfuzzer-config.mozbuild")
 +
 +# DOM Mask
-+LOCAL_INCLUDES += ["/camoucfg"]
++LOCAL_INCLUDES += ["/omegacfg"]
 \ No newline at end of file

@@ -312,5 +312,5 @@ index 925190505a..878853f0f0 100644
  FINAL_LIBRARY = "xul"
 +
 +# DOM Mask
-+LOCAL_INCLUDES += ["/camoucfg"]
++LOCAL_INCLUDES += ["/omegacfg"]
 \ No newline at end of file
