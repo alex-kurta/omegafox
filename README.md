@@ -13,7 +13,7 @@
   - Removed cursor highlighter
   - Re-enabled stock Firefox features that do not make outside connections
   - Search engine usage allowed
-  - etc.
+  - [etc.](https://forge.fsky.io/oneflux/omegafox/commits/branch/main)
 
 - Security enhancements:
   - Improved process isolation
@@ -22,7 +22,6 @@
   - Bundled with [hardened_malloc](https://github.com/GrapheneOS/hardened_malloc)
   - Uses Mullvad's adblock DNS-over-HTTPS to provide Encrypted Client Hello
   - JIT disabled by default
-  - More to come
 
 ## Building
 
