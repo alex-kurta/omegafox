@@ -58,6 +58,7 @@ ac_add_options --enable-safestack
 ac_add_options --enable-pie
 ac_add_options --enable-sandbox
 ac_add_options --enable-fission
+ac_add_options --enable-network-isolation
 ac_add_options --enable-default-toolkit=cairo-gtk3-wayland
 ac_add_options --enable-randomize
 ac_add_options --enable-stack-protector
