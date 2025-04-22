@@ -57,3 +57,7 @@ ac_add_options --enable-safestack
 ac_add_options --enable-pie
 ac_add_options --enable-sandbox
 ac_add_options --enable-default-toolkit=cairo-gtk3-wayland
+
+# BUILDING
+# mk_add_options AUTOCLOBBER=1
+# export AUTOCLOBBER=1
