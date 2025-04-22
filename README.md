@@ -1,12 +1,10 @@
+<p align="center">
+  <img src="https://forge.fsky.io/oneflux/omegafox/raw/branch/main/additions/browser/branding/omegafox/VisualElements_150.png">
+</p>
 
+<h1 align="center">Ωfox</h1>
 
-<img src="https://forge.fsky.io/oneflux/omegafox/raw/branch/main/additions/browser/branding/omegafox/default256.png" align="center">
-
-# Omegafox
-
-General-use browser based on [Camoufox] (https://github.com/daijro/camoufox)
-
----
+<h3 align="center">General-use browser based on <a href="https://github.com/daijro/camoufox">Camoufox</a></h3>
 
 ## Features
 
@@ -21,10 +19,8 @@ General-use browser based on [Camoufox] (https://github.com/daijro/camoufox)
   - Improved process isolation
   - Weak ciphers and outdated TLS versions disabled by default
   - Hardened compilation configuration
-  - Bundled with [hardened_malloc] (https://github.com/GrapheneOS/hardened_malloc)
+  - Bundled with [hardened_malloc](https://github.com/GrapheneOS/hardened_malloc)
   - More to come
-
----
 
 ## Building
 
@@ -74,9 +70,7 @@ $ python3 multibuild.py --target linux windows macos --arch x86_64 arm64
 
 </details>
 
----
-
 ## Thanks
 
-- [Camoufox] (https://github.com/daijro/camoufox) - For inspiring this project
-- [GrapheneOS] (https://github.com/GrapheneOS) - Hardened memory allocator
+- [Camoufox](https://github.com/daijro/camoufox) - For inspiring this project
+- [GrapheneOS](https://github.com/GrapheneOS) - Hardened memory allocator
