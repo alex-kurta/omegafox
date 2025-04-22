@@ -20,6 +20,10 @@ mk_add_options MOZ_SERVICES_HEALTHREPORT=0
 mk_add_options MOZ_TELEMETRY_REPORTING=0
 mk_add_options MOZ_INSTALLER=0
 mk_add_options MOZ_AUTOMATION_INSTALLER=0
+MOZ_CRASHREPORTER=0
+MOZ_DATA_REPORTING=0
+export MOZ_CRASHREPORTER=0
+export MOZ_DATA_REPORTING=0
 
 # ADDONS
 ac_add_options --allow-addon-sideload
