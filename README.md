@@ -78,3 +78,4 @@ $ python3 multibuild.py --target linux --arch x86_64 arm64
 - [GrapheneOS](https://github.com/GrapheneOS) - Hardened memory allocator
 - [Mullvad](https://mullvad.net/) - Adblock DNS-over-HTTPS
 - [Firefox-hardened](https://github.com/boredsquirrel/Firefox-hardened) - Mozconfig options
+- [Trivalent](https://github.com/secureblue/Trivalent) - Hardening options
