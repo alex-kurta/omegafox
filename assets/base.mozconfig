@@ -1,29 +1,19 @@
+# COMMON
 ac_add_options --enable-application=browser
- 
-ac_add_options --allow-addon-sideload
+ac_add_options --enable-jxl
+ac_add_options --enable-release
+
+# DEBLOAT
 ac_add_options --disable-crashreporter
 ac_add_options --disable-backgroundtasks
 ac_add_options --disable-debug
 ac_add_options --disable-default-browser-agent
 ac_add_options --disable-tests
 ac_add_options --disable-updater
-ac_add_options --enable-hardening
-ac_add_options --enable-jxl
-# ac_add_options --enable-optimize
-ac_add_options --enable-release
-# ac_add_options --enable-rust-simd
-
+ac_add_options --disable-artifact-builds
 ac_add_options --disable-system-policies
 # ac_add_options --disable-accessibility
 # ac_add_options --disable-webspeech
-
-ac_add_options --with-app-name=omegafox
-ac_add_options --with-branding=browser/branding/omegafox
-
-ac_add_options --with-unsigned-addon-scopes=app,system
-
-export MOZ_REQUIRE_SIGNING=
-
 mk_add_options MOZ_CRASHREPORTER=0
 mk_add_options MOZ_DATA_REPORTING=0
 mk_add_options MOZ_SERVICES_HEALTHREPORT=0
@@ -31,12 +21,23 @@ mk_add_options MOZ_TELEMETRY_REPORTING=0
 mk_add_options MOZ_INSTALLER=0
 mk_add_options MOZ_AUTOMATION_INSTALLER=0
 
-ac_add_options --enable-lto
-# ac_add_options --enable-alsa
+# ADDONS
+ac_add_options --allow-addon-sideload
+ac_add_options --with-unsigned-addon-scopes=app,system
 
+# BRANDING
+ac_add_options --with-app-name=omegafox
+ac_add_options --with-branding=browser/branding/omegafox
+export MOZ_REQUIRE_SIGNING=
+
+# SPEED
+ac_add_options --enable-optimize
+ac_add_options --enable-rust-simd
+ac_add_options --enable-lto
+
+# SECURITY
+ac_add_options --enable-hardening
 ac_add_options --disable-jemalloc
 ac_add_options --enable-cfi
 ac_add_options --enable-safestack
 ac_add_options --enable-pie
-
-ac_add_options --disable-artifact-builds
