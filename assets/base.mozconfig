@@ -6,9 +6,6 @@ ac_add_options --enable-release
 # DEBLOAT
 ac_add_options --disable-crashreporter
 ac_add_options --disable-backgroundtasks
-# ac_add_options --disable-debug
-# ac_add_options --disable-debug-symbols
-# ac_add_options --disable-debug-js-modules
 ac_add_options --disable-default-browser-agent
 ac_add_options --disable-tests
 ac_add_options --disable-updater
@@ -36,6 +33,11 @@ export MOZ_REQUIRE_SIGNING=
 ac_add_options --enable-optimize
 ac_add_options --enable-rust-simd
 ac_add_options --enable-lto
+# ac_add_options --disable-debug
+# ac_add_options --disable-debug-symbols
+# ac_add_options --disable-debug-js-modules
+# ac_add_options --enable-strip
+# ac_add_options --enable-install-strip
 
 # SECURITY
 ac_add_options --enable-hardening
