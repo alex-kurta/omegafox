@@ -65,7 +65,7 @@ Options:
   --clean               Clean the build directory before starting
 
 Example:
-$ python3 multibuild.py --target linux windows macos --arch x86_64 arm64
+$ python3 multibuild.py --target linux --arch x86_64 arm64
 ```
 
 </details>
