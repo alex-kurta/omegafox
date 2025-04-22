@@ -8,10 +8,9 @@ debs := python3 python3-dev python3-pip p7zip-full golang-go msitools wget aria2
 rpms := python3 python3-devel p7zip golang msitools wget aria2
 pacman := python python-pip p7zip go msitools wget aria2
 
-.PHONY: help fetch setup setup-minimal clean set-target distclean build package \
-        build-launcher check-arch revert edits run bootstrap mozbootstrap dir \
-        package-linux package-macos package-windows vcredist_arch patch unpatch \
-        workspace check-arg edit-cfg ff-dbg tests update-ubo-assets
+.PHONY: help fetch setup setup-minimal clean set-target distclean build \
+        package check-arch revert edits run bootstrap mozbootstrap dir \
+		package-linux vcredist_arch patch unpatch workspace check-arg edit-cfg ff-dbg
 
 help:
 	@echo "Available targets:"
@@ -22,7 +21,6 @@ help:
 	@echo "  dir             - Prepare Omegafox source directory with BUILD_TARGET"
 	@echo "  revert          - Kill all working changes"
 	@echo "  edits           - Omegafox developer UI"
-	@echo "  build-launcher  - Build launcher"
 	@echo "  clean           - Remove build artifacts"
 	@echo "  distclean       - Remove everything including downloads"
 	@echo "  build           - Build Omegafox"
@@ -133,19 +131,6 @@ package-linux:
 		--release $(release) \
 		--arch $(arch) \
 		--fonts linux
-
-run-launcher:
-	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch;
-	make build-launcher arch=x86_64 os=linux;
-	cp legacy/launcher/dist/launch $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch;
-	$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch
-
-run-pw:
-	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/launch;
-	make build-launcher arch=x86_64 os=linux;
-	python3 scripts/run-pw.py \
-		--version $(version) \
-		--release $(release)
 
 run:
 	cd $(cf_source_dir) \
