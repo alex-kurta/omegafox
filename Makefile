@@ -36,8 +36,6 @@ help:
 	@echo "  patch           - Apply a patch"
 	@echo "  unpatch         - Remove a patch"
 	@echo "  workspace       - Sets the workspace to a patch, assuming its applied"
-	@echo "  tests           - Runs the Playwright tests"
-	@echo "  update-ubo-assets - Update the uBOAssets.json file"
 
 _ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(_ARGS):;@:)
@@ -232,12 +230,6 @@ workspace:
 	make checkpoint || true
 	make patch $(_ARGS)
 
-tests:
-	cd ./tests && \
-	bash run-tests.sh \
-		--executable-path ../$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox-bin \
-		$(if $(filter true,$(headful)),--headful,)
-
 unbusy:
 	rm -rf $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox-bin \
 		$(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox \
@@ -245,9 +237,6 @@ unbusy:
 
 path:
 	@realpath $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/camoufox-bin
-
-update-ubo-assets:
-	bash ./scripts/update-ubo-assets.sh
 
 upload:
 	# ===============================
