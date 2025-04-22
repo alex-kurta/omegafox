@@ -181,14 +181,4 @@ unbusy:
 path:
 	@realpath $(cf_source_dir)/obj-x86_64-pc-linux-gnu/dist/bin/omegafox-bin
 
-upload:
-	# ===============================
-	# This is only for internal use. You can ignore this.
-	# ===============================
-
-	@test -f .passwd || { echo "Error: .passwd file not found"; exit 1; }
-	@mkdir -p ../omegafox-web/internal
-	@rm -rf ../omegafox-web/pipeline/rev-$(closedsrc_rev).7z
-	7z a "-p$$(cat ./.passwd)" -mhe=on ../omegafox-web/pipeline/rev-$(closedsrc_rev).7z "./patches/private/*.patch"
-
 vcredist_arch := $(shell echo $(arch) | sed 's/x86_64/x64/' | sed 's/i686/x86/')
