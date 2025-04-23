@@ -2,6 +2,7 @@
 ac_add_options --enable-application=browser
 ac_add_options --enable-jxl
 ac_add_options --enable-release
+ac_add_options --enable-clang
 
 # DEBLOAT
 ac_add_options --disable-crashreporter

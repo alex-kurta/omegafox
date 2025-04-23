@@ -88,6 +88,8 @@ mozbootstrap:
 
 bootstrap: dir
 	(sudo apt-get -y install $(debs) || sudo dnf -y install $(rpms) || sudo pacman -Sy $(pacman))
+	export CC=clang
+	export CXX=clang++
 	make mozbootstrap
 
 diff:
