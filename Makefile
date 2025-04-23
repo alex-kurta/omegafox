@@ -41,8 +41,6 @@ fetch:
 	aria2c -x16 -s16 -k1M -o $(ff_source_tarball) "https://archive.mozilla.org/pub/firefox/releases/$(version)/source/firefox-$(version).source.tar.xz"; \
 
 setup-minimal:
-	# Note: Only docker containers are intended to run this directly.
-	# Run this before `make dir` or `make build` to avoid setting up a local git repo.
 	if [ ! -f $(ff_source_tarball) ]; then \
 		make fetch; \
 	fi
