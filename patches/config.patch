@@ -10,6 +10,7 @@ index bb0f71dd60..3ad3d84b82 100644
 +@RESPATH@/defaults/pref/local-settings.js
 +@RESPATH@/distribution/policies.json
 +@RESPATH@/omegafox.cfg
++@RESPATH@/libhardened_malloc.so
 +
  ; [Default Preferences]
  ; All the pref files must be part of base to prevent migration bugs
@@ -22,6 +23,7 @@ index e69de29bb2..208184547e 100644
 +FINAL_TARGET_FILES += [
 +  "omegafox.cfg",
 +  "properties.json"
++  "libhardened_malloc.so"
 +]
 +
 +FINAL_TARGET_FILES.distribution += [
