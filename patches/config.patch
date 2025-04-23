@@ -2,7 +2,7 @@ diff --git a/browser/installer/package-manifest.in b/browser/installer/package-m
 index bb0f71dd60..3ad3d84b82 100644
 --- a/browser/installer/package-manifest.in
 +++ b/browser/installer/package-manifest.in
-@@ -244,6 +244,11 @@
+@@ -244,6 +244,12 @@
  #endif
  #endif
  
