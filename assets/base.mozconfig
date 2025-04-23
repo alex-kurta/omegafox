@@ -57,12 +57,7 @@ mk_add_options MOZ_HARDENING=1
 ac_add_options --disable-jemalloc
 ac_add_options --enable-sandbox
 ac_add_options --enable-default-toolkit=cairo-gtk3-wayland
-ac_add_options --with-clang-extra-optimization-flags="-fno-omit-frame-pointer -fvisibility=hidden -march=native"
 CFLAGS="$CFLAGS -fwrapv"
 CXXFLAGS="$CXXFLAGS -fwrapv"
 CFLAGS="$CFLAGS -ftrivial-auto-var-init=zero"
 CXXFLAGS="$CXXFLAGS -ftrivial-auto-var-init=zero"
-
-# BUILDING
-# mk_add_options AUTOCLOBBER=1
-# export AUTOCLOBBER=1
