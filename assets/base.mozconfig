@@ -57,10 +57,8 @@ mk_add_options MOZ_HARDENING=1
 ac_add_options --disable-jemalloc
 ac_add_options --enable-sandbox
 ac_add_options --enable-default-toolkit=cairo-gtk3-wayland
-ac_add_options --enable-randomize
-ac_add_options --enable-stack-protector
 ac_add_options --enable-fortify-source=2
-ac_add_options --with-clang-extra-optimization-flags="-fstack-protector-strong -fno-omit-frame-pointer -fvisibility=hidden -march=native"
+ac_add_options --with-clang-extra-optimization-flags="-fno-omit-frame-pointer -fvisibility=hidden -march=native"
 CFLAGS="$CFLAGS -fwrapv"
 CXXFLAGS="$CXXFLAGS -fwrapv"
 CFLAGS="$CFLAGS -ftrivial-auto-var-init=zero"
