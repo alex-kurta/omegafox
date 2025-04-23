@@ -2,6 +2,7 @@
 ac_add_options --enable-application=browser
 ac_add_options --enable-jxl
 ac_add_options --enable-release
+mk_add_options MOZ_MAKE_FLAGS="-j$(nproc)"
 export CC=clang
 export CXX=clang++
 
