@@ -86,10 +86,7 @@ set-target:
 mozbootstrap:
 	cd $(of_source_dir) && MOZBUILD_STATE_PATH=$$HOME/.mozbuild ./mach --no-interactive bootstrap --application-choice=browser
 
-bootstrap: 
-	export CC=clang
-	export CXX=clang++
-	make mozbootstrap
+bootstrap: mozbootstrap
 
 diff:
 	@cd $(of_source_dir) && git diff $(_ARGS)
