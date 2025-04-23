@@ -23,7 +23,6 @@ index e69de29bb2..208184547e 100644
 +FINAL_TARGET_FILES += [
 +  "omegafox.cfg",
 +  "properties.json"
-+  "libhardened_malloc.so"
 +]
 +
 +FINAL_TARGET_FILES.distribution += [
