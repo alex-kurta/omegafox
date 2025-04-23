@@ -55,7 +55,6 @@ export MOZ_OPTIMIZE=1
 ac_add_options --enable-hardening
 mk_add_options MOZ_HARDENING=1
 ac_add_options --disable-jemalloc
-ac_add_options --enable-pie
 ac_add_options --enable-sandbox
 ac_add_options --enable-fission
 ac_add_options --enable-network-isolation
