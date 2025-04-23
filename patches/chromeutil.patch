@@ -35,7 +35,7 @@ index 52f0af76ec..2a7a9ae4fc 100644
  double ChromeUtils::DateNow(GlobalObject&) { return JS_Now() / 1000.0; }
  
  /* static */
-@@ -2141,6 +2161,66 @@ void ChromeUtils::GetAllPossibleUtilityActorNames(GlobalObject& aGlobal,
+@@ -2440,6 +2440,65 @@ void ChromeUtils::GetAllPossibleUtilityActorNames(GlobalObject& aGlobal,
    }
  }
  
@@ -98,7 +98,6 @@ index 52f0af76ec..2a7a9ae4fc 100644
 +  aRetVal.Clear();
 +}
 +
-
  /* static */
  bool ChromeUtils::ShouldResistFingerprinting(
      GlobalObject& aGlobal, JSRFPTarget aTarget,
@@ -117,7 +116,7 @@ index 138b9c3f80..c7c7ce74bf 100644
    static double DateNow(GlobalObject&);
  
    static void EnsureJSOracleStarted(GlobalObject&);
-@@ -314,6 +318,20 @@ class ChromeUtils {
+@@ -314,6 +314,20 @@ class ChromeUtils {
    static void GetAllPossibleUtilityActorNames(GlobalObject& aGlobal,
                                                nsTArray<nsCString>& aNames);
  
@@ -135,7 +134,6 @@ index 138b9c3f80..c7c7ce74bf 100644
 +  static void CamouGetStringList(GlobalObject& aGlobal, const nsAString& aVarName,
 +                                 nsTArray<nsString>& aRetVal);
 +
-
    static bool ShouldResistFingerprinting(
        GlobalObject& aGlobal, JSRFPTarget aTarget,
        const Nullable<uint64_t>& aOverriddenFingerprintingSettings);
