@@ -2,7 +2,7 @@ diff --git a/browser/installer/package-manifest.in b/browser/installer/package-m
 index bb0f71dd60..3ad3d84b82 100644
 --- a/browser/installer/package-manifest.in
 +++ b/browser/installer/package-manifest.in
-@@ -244,6 +244,12 @@
+@@ -244,6 +244,11 @@
  #endif
  #endif
  
@@ -10,7 +10,6 @@ index bb0f71dd60..3ad3d84b82 100644
 +@RESPATH@/defaults/pref/local-settings.js
 +@RESPATH@/distribution/policies.json
 +@RESPATH@/omegafox.cfg
-+@RESPATH@/libhardened_malloc.so
 +
  ; [Default Preferences]
  ; All the pref files must be part of base to prevent migration bugs
