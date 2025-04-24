@@ -41,10 +41,7 @@ def add_includes_to_package(package_file, includes, fonts, new_file, target):
             os.rmdir(omegafox_dir)
 
         # Create target_dir
-        if target == 'macos':
-            target_dir = os.path.join(temp_dir, 'Omegafox.app', 'Contents', 'Resources')
-        else:
-            target_dir = temp_dir
+        target_dir = temp_dir
 
         # Add includes
         for include in includes or []:
@@ -60,13 +57,12 @@ def add_includes_to_package(package_file, includes, fonts, new_file, target):
 
         # Add the font folders under fonts/
         fonts_dir = os.path.join(target_dir, 'fonts')
-        if target == 'linux':
-            for font in fonts or []:
-                shutil.copytree(
-                    os.path.join('bundle', 'fonts', font),
-                    os.path.join(fonts_dir, font),
-                    dirs_exist_ok=True,
-                )
+        for font in fonts or []:
+            shutil.copytree(
+                os.path.join('bundle', 'fonts', font),
+                os.path.join(fonts_dir, font),
+                dirs_exist_ok=True,
+            )
 
         # Remove unneeded paths
         for path in UNNEEDED_PATHS:
