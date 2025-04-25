@@ -2,28 +2,49 @@ diff --git a/gfx/thebes/gfxPlatformFontList.cpp b/gfx/thebes/gfxPlatformFontList
 index bc0e123f85..52ec46f76b 100644
 --- a/gfx/thebes/gfxPlatformFontList.cpp
 +++ b/gfx/thebes/gfxPlatformFontList.cpp
-@@ -13,6 +13,7 @@
- #include "gfxTextRun.h"
- #include "gfxUserFontSet.h"
- #include "SharedFontList-impl.h"
-+#include "MaskConfig.hpp"
- 
- #include "GeckoProfiler.h"
- #include "nsCRT.h"
-@@ -303,6 +304,16 @@ gfxPlatformFontList::gfxPlatformFontList(bool aNeedFullnamePostscriptNames)
+@@ -303,6 +303,45 @@ gfxPlatformFontList::gfxPlatformFontList(bool aNeedFullnamePostscriptNames)
  
    mFontPrefs = MakeUnique<FontPrefs>();
  
 +  // Hijack the kFontSystemWhitelistPref pref
-+  if (std::vector<std::string> fontValues = MaskConfig::GetStringList("fonts");
-+      !fontValues.empty()) {
-+    std::string fontValuesJoined =
-+        std::accumulate(fontValues.begin(), fontValues.end(), std::string(),
-+                        [](const std::string& acc, const std::string& s) {
-+                          return acc.empty() ? s : acc + "," + s;
-+                        });
-+    Preferences::SetCString(kFontSystemWhitelistPref, fontValuesJoined.data());
-+  }
++  std::vector<std::string> fontValues = {
++    "Arimo", "Cousine", "Noto Naskh Arabic", "Noto Sans Adlam", "Noto Sans Armenian", 
++    "Noto Sans Balinese", "Noto Sans Bamum", "Noto Sans Bassa Vah", "Noto Sans Batak", 
++    "Noto Sans Bengali", "Noto Sans Buginese", "Noto Sans Buhid", "Noto Sans Canadian Aboriginal", 
++    "Noto Sans Chakma", "Noto Sans Cham", "Noto Sans Cherokee", "Noto Sans Coptic", 
++    "Noto Sans Deseret", "Noto Sans Devanagari", "Noto Sans Elbasan", "Noto Sans Ethiopic", 
++    "Noto Sans Georgian", "Noto Sans Grantha", "Noto Sans Gujarati", "Noto Sans Gunjala Gondi", 
++    "Noto Sans Gurmukhi", "Noto Sans Hanifi Rohingya", "Noto Sans Hanunoo", "Noto Sans Hebrew", 
++    "Noto Sans JP", "Noto Sans Javanese", "Noto Sans KR", "Noto Sans Kannada", "Noto Sans Kayah Li", 
++    "Noto Sans Khmer", "Noto Sans Khojki", "Noto Sans Khudawadi", "Noto Sans Lao", "Noto Sans Lepcha", 
++    "Noto Sans Limbu", "Noto Sans Lisu", "Noto Sans Mahajani", "Noto Sans Malayalam", "Noto Sans Mandaic", 
++    "Noto Sans Masaram Gondi", "Noto Sans Medefaidrin", "Noto Sans Meetei Mayek", "Noto Sans Mende Kikakui", 
++    "Noto Sans Miao", "Noto Sans Modi", "Noto Sans Mongolian", "Noto Sans Mro", "Noto Sans Multani", 
++    "Noto Sans Myanmar", "Noto Sans NKo", "Noto Sans New Tai Lue", "Noto Sans Newa", "Noto Sans Ol Chiki", 
++    "Noto Sans Oriya", "Noto Sans Osage", "Noto Sans Osmanya", "Noto Sans Pahawh Hmong", "Noto Sans Pau Cin Hau", 
++    "Noto Sans Rejang", "Noto Sans Runic", "Noto Sans SC", "Noto Sans Samaritan", "Noto Sans Saurashtra", 
++    "Noto Sans Sharada", "Noto Sans Shavian", "Noto Sans Sinhala", "Noto Sans Sora Sompeng", "Noto Sans Soyombo", 
++    "Noto Sans Sundanese", "Noto Sans Syloti Nagri", "Noto Sans Symbols", "Noto Sans Symbols 2", 
++    "Noto Sans Syriac", "Noto Sans TC", "Noto Sans Tagalog", "Noto Sans Tagbanwa", "Noto Sans Tai Le", 
++    "Noto Sans Tai Tham", "Noto Sans Tai Viet", "Noto Sans Takri", "Noto Sans Tamil", "Noto Sans Telugu", 
++    "Noto Sans Thaana", "Noto Sans Thai", "Noto Sans Tifinagh", "Noto Sans Tifinagh APT", "Noto Sans Tifinagh Adrar", 
++    "Noto Sans Tifinagh Agraw Imazighen", "Noto Sans Tifinagh Ahaggar", "Noto Sans Tifinagh Air", 
++    "Noto Sans Tifinagh Azawagh", "Noto Sans Tifinagh Ghat", "Noto Sans Tifinagh Hawad", "Noto Sans Tifinagh Rhissa Ixa", 
++    "Noto Sans Tifinagh SIL", "Noto Sans Tifinagh Tawellemmet", "Noto Sans Tirhuta", "Noto Sans Vai", 
++    "Noto Sans Wancho", "Noto Sans Warang Citi", "Noto Sans Yi", "Noto Sans Zanabazar Square", 
++    "Noto Serif Armenian", "Noto Serif Balinese", "Noto Serif Bengali", "Noto Serif Devanagari", "Noto Serif Dogra", 
++    "Noto Serif Ethiopic", "Noto Serif Georgian", "Noto Serif Grantha", "Noto Serif Gujarati", "Noto Serif Gurmukhi", 
++    "Noto Serif Hebrew", "Noto Serif Kannada", "Noto Serif Khmer", "Noto Serif Khojki", "Noto Serif Lao", 
++    "Noto Serif Malayalam", "Noto Serif Myanmar", "Noto Serif NP Hmong", "Noto Serif Sinhala", "Noto Serif Tamil", 
++    "Noto Serif Telugu", "Noto Serif Thai", "Noto Serif Tibetan", "Noto Serif Yezidi", "STIX Two Math", "Tinos", 
++    "Twemoji Mozilla",
++  };
++  std::string fontValuesJoined =
++      std::accumulate(fontValues.begin(), fontValues.end(), std::string(),
++                      [](const std::string& acc, const std::string& s) {
++                        return acc.empty() ? s : acc + "," + s;
++                      });
++  Preferences::SetCString(kFontSystemWhitelistPref, fontValuesJoined.data());
    gfxFontUtils::GetPrefsFontList(kFontSystemWhitelistPref, mEnabledFontsList);
    mFontFamilyWhitelistActive = !mEnabledFontsList.IsEmpty();
  
@@ -113,33 +134,53 @@ index 9d1f7c8c5b..926315ca2f 100644
      mFontFaceSet->OnFontFaceStatusChanged(this);
    }
 diff --git a/layout/style/FontFaceImpl.h b/layout/style/FontFaceImpl.h
-index 70c06609e9..66b2666621 100644
+index 1b9530842e..ac0e67a1b5 100644
 --- a/layout/style/FontFaceImpl.h
 +++ b/layout/style/FontFaceImpl.h
-@@ -8,6 +8,7 @@
- #define mozilla_dom_FontFaceImpl_h
- 
- #include "mozilla/dom/FontFaceBinding.h"
-+#include "MaskConfig.hpp"
- #include "mozilla/FontPropertyTypes.h"
- #include "mozilla/Maybe.h"
- #include "mozilla/Mutex.h"
-@@ -35,6 +36,20 @@ class UTF8StringOrArrayBufferOrArrayBufferView;
+@@ -32,6 +32,48 @@ class UTF8StringOrArrayBufferOrArrayBufferView;
  
  namespace mozilla::dom {
  
 +// Helper function to check if a font is in the allowed list
 +inline bool IsFontAllowed(const nsACString& aFontName) {
-+  if (std::vector<std::string> maskValues =
-+          MaskConfig::GetStringListLower("fonts");
-+      !maskValues.empty()) {
-+    std::string fontName(aFontName.BeginReading(), aFontName.EndReading());
-+    std::transform(fontName.begin(), fontName.end(), fontName.begin(),
-+                   ::tolower);
-+    return std::find(maskValues.begin(), maskValues.end(), fontName) !=
-+           maskValues.end();
-+  }
-+  return true;
++  std::vector<std::string> allowedFonts = {
++    "arimo", "cousine", "noto naskh arabic", "noto sans adlam", "noto sans armenian", 
++    "noto sans balinese", "noto sans bamum", "noto sans bassa vah", "noto sans batak", 
++    "noto sans bengali", "noto sans buginese", "noto sans buhid", "noto sans canadian aboriginal", 
++    "noto sans chakma", "noto sans cham", "noto sans cherokee", "noto sans coptic", 
++    "noto sans deseret", "noto sans devanagari", "noto sans elbasan", "noto sans ethiopic", 
++    "noto sans georgian", "noto sans grantha", "noto sans gujarati", "noto sans gunjala gondi", 
++    "noto sans gurmukhi", "noto sans hanifi rohingya", "noto sans hanunoo", "noto sans hebrew", 
++    "noto sans jp", "noto sans javanese", "noto sans kr", "noto sans kannada", "noto sans kayah li", 
++    "noto sans khmer", "noto sans khojki", "noto sans khudawadi", "noto sans lao", "noto sans lepcha", 
++    "noto sans limbu", "noto sans lisu", "noto sans mahajani", "noto sans malayalam", "noto sans mandaic", 
++    "noto sans masaram gondi", "noto sans medefaidrin", "noto sans meetei mayek", "noto sans mende kikakui", 
++    "noto sans miao", "noto sans modi", "noto sans mongolian", "noto sans mro", "noto sans multani", 
++    "noto sans myanmar", "noto sans nko", "noto sans new tai lue", "noto sans newa", "noto sans ol chiki", 
++    "noto sans oriya", "noto sans osage", "noto sans osmanya", "noto sans pahawh hmong", "noto sans pau cin hau", 
++    "noto sans rejang", "noto sans runic", "noto sans sc", "noto sans samaritan", "noto sans saurashtra", 
++    "noto sans sharada", "noto sans shavian", "noto sans sinhala", "noto sans sora sompeng", "noto sans soyombo", 
++    "noto sans sundanese", "noto sans syloti nagri", "noto sans symbols", "noto sans symbols 2", 
++    "noto sans syriac", "noto sans tc", "noto sans tagalog", "noto sans tagbanwa", "noto sans tai le", 
++    "noto sans tai tham", "noto sans tai viet", "noto sans takri", "noto sans tamil", "noto sans telugu", 
++    "noto sans thaana", "noto sans thai", "noto sans tifinagh", "noto sans tifinagh apt", "noto sans tifinagh adrar", 
++    "noto sans tifinagh agraw imazighen", "noto sans tifinagh ahaggar", "noto sans tifinagh air", 
++    "noto sans tifinagh azawagh", "noto sans tifinagh ghat", "noto sans tifinagh hawad", "noto sans tifinagh rhissa ixa", 
++    "noto sans tifinagh sil", "noto sans tifinagh tawellemmet", "noto sans tirhuta", "noto sans vai", 
++    "noto sans wancho", "noto sans warang citi", "noto sans yi", "noto sans zanabazar square", 
++    "noto serif armenian", "noto serif balinese", "noto serif bengali", "noto serif devanagari", "noto serif dogra", 
++    "noto serif ethiopic", "noto serif georgian", "noto serif grantha", "noto serif gujarati", "noto serif gurmukhi", 
++    "noto serif hebrew", "noto serif kannada", "noto serif khmer", "noto serif khojki", "noto serif lao", 
++    "noto serif malayalam", "noto serif myanmar", "noto serif np hmong", "noto serif sinhala", "noto serif tamil", 
++    "noto serif telugu", "noto serif thai", "noto serif tibetan", "noto serif yezidi", "stix two math", "tinos", 
++    "twemoji mozilla",
++  };
++
++  std::string fontName(aFontName.BeginReading(), aFontName.EndReading());
++  std::transform(fontName.begin(), fontName.end(), fontName.begin(),
++                  ::tolower);
++  return std::find(allowedFonts.begin(), allowedFonts.end(), fontName) !=
++          allowedFonts.end();
 +}
 +
  class FontFaceImpl final {
