@@ -82,10 +82,6 @@ def run_build(target, arch):
     builder.build()
     # Run package
     builder.package()
-    # Move assets to dist
-    print('Assets:', ', '.join(builder.assets))
-    for asset in builder.assets:
-        shutil.move(asset, f'dist/{asset}')
 
 
 def main():
