@@ -33,7 +33,6 @@ run 'cp -v ../../settings/omegafox.cfg .'
 run 'cp -v ../../settings/distribution/policies.json .'
 run 'cp -v ../../settings/defaults/pref/local-settings.js .'
 run 'cp -v ../../settings/properties.json .'
-run 'cp -v ../../settings/libhardened_malloc.so .'
 run 'touch moz.build'
 popd > /dev/null
 

@@ -30,15 +30,15 @@ def add_includes_to_package(package_file, includes, fonts, new_file, target):
                 target=target,
             )
 
-        # Move contents out of omegafox folder if it exists
-        old_omegafox_dir = os.path.join(temp_dir, 'omegafox')
-        omegafox_dir = os.path.join(temp_dir, 'omegafox-folder')
-        if os.path.exists(old_omegafox_dir):
-            # Rename omegafox_dir
-            os.rename(old_omegafox_dir, omegafox_dir)
-            for item in os.listdir(omegafox_dir):
-                shutil.move(os.path.join(omegafox_dir, item), temp_dir)
-            os.rmdir(omegafox_dir)
+        # Move contents out of testfox folder if it exists
+        old_testfox_dir = os.path.join(temp_dir, 'testfox')
+        testfox_dir = os.path.join(temp_dir, 'testfox-folder')
+        if os.path.exists(old_testfox_dir):
+            # Rename testfox_dir
+            os.rename(old_testfox_dir, testfox_dir)
+            for item in os.listdir(testfox_dir):
+                shutil.move(os.path.join(testfox_dir, item), temp_dir)
+            os.rmdir(testfox_dir)
 
         # Create target_dir
         target_dir = temp_dir
@@ -63,6 +63,13 @@ def add_includes_to_package(package_file, includes, fonts, new_file, target):
                 os.path.join(fonts_dir, font),
                 dirs_exist_ok=True,
             )
+
+        # Add hardened-malloc
+        shutil.copy2(
+            os.path.join('libhadened_malloc.so'),
+            os.path.join(target_dir, 'libhardened_malloc.so'),
+            dirs_exist_ok=True,
+        )
 
         # Remove unneeded paths
         for path in UNNEEDED_PATHS:
