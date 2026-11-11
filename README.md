@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://forge.fsky.io/oneflux/omegafox/raw/branch/main/additions/browser/branding/omegafox/VisualElements_150.png">
+  <img src="additions/browser/branding/omegafox/default256.png" alt="Omegafox Logo" width="256">
 </p>
 
 <h1 align="center">Ωfox</h1>
